@@ -1,0 +1,13 @@
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\bin\Debug\netcoreapp3.1\MyWebServer.exe
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\bin\Debug\netcoreapp3.1\MyWebServer.deps.json
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\bin\Debug\netcoreapp3.1\MyWebServer.runtimeconfig.json
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\bin\Debug\netcoreapp3.1\MyWebServer.runtimeconfig.dev.json
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\bin\Debug\netcoreapp3.1\MyWebServer.dll
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\bin\Debug\netcoreapp3.1\MyWebServer.pdb
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\netcoreapp3.1\MyWebServer.csproj.AssemblyReference.cache
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\netcoreapp3.1\MyWebServer.AssemblyInfoInputs.cache
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\netcoreapp3.1\MyWebServer.AssemblyInfo.cs
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\netcoreapp3.1\MyWebServer.csproj.CoreCompileInputs.cache
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\netcoreapp3.1\MyWebServer.dll
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\netcoreapp3.1\MyWebServer.pdb
+C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\netcoreapp3.1\MyWebServer.genruntimeconfig.cache
