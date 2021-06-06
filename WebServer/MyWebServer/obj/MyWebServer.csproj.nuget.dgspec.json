@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zlatomir123\\source\\repos\\WebServer\\MyWebServer\\MyWebServer.csproj": {}
+    "E:\\GitHub\\Cs_Web_Basics\\WebServer\\MyWebServer\\MyWebServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zlatomir123\\source\\repos\\WebServer\\MyWebServer\\MyWebServer.csproj": {
+    "E:\\GitHub\\Cs_Web_Basics\\WebServer\\MyWebServer\\MyWebServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zlatomir123\\source\\repos\\WebServer\\MyWebServer\\MyWebServer.csproj",
+        "projectUniqueName": "E:\\GitHub\\Cs_Web_Basics\\WebServer\\MyWebServer\\MyWebServer.csproj",
         "projectName": "MyWebServer",
-        "projectPath": "C:\\Users\\Zlatomir123\\source\\repos\\WebServer\\MyWebServer\\MyWebServer.csproj",
+        "projectPath": "E:\\GitHub\\Cs_Web_Basics\\WebServer\\MyWebServer\\MyWebServer.csproj",
         "packagesPath": "C:\\Users\\Zlatomir123\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zlatomir123\\source\\repos\\WebServer\\MyWebServer\\obj\\",
+        "outputPath": "E:\\GitHub\\Cs_Web_Basics\\WebServer\\MyWebServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Zlatomir123\\AppData\\Roaming\\NuGet\\NuGet.Config",

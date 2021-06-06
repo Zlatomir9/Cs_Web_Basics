@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace MyWebServer.MyHttpServer.Http
+﻿namespace MyWebServer.MyHttpServer.Http
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class HttpRequest
     {
         private const string NewLine = "\r\n";
 
         public HttpMethod Method { get; private set; }
 
-        public string Url { get; private set; }
+        public string Path { get; private set; }
+
+        public Dictionary<string, string> Query { get; private set; }
 
         public HttpHeaderCollection Headers { get; private set; }
 
@@ -26,6 +28,8 @@ namespace MyWebServer.MyHttpServer.Http
 
             var url = startLine[1];
 
+            var (path, query) = ParseUrl(url);
+
             var headers = ParseHttpHeader(lines.Skip(1));
 
             var bodyLines = lines.Skip(headers.Count + 2).ToArray();
@@ -35,7 +39,8 @@ namespace MyWebServer.MyHttpServer.Http
             return new HttpRequest
             {
                 Method = method,
-                Url = url,
+                Path = url,
+                Query = query,
                 Headers = headers,
                 Body = body
             };
@@ -44,13 +49,31 @@ namespace MyWebServer.MyHttpServer.Http
         private static HttpMethod ParseHttpMethod(string method)
             => method.ToUpper() switch
             {
-                "GET" => HttpMethod.GET,
-                "POST" => HttpMethod.POST,
-                "PUT" => HttpMethod.PUT,
-                "DELETE" => HttpMethod.DELETE,
+                "GET" => HttpMethod.Get,
+                "POST" => HttpMethod.Post,
+                "PUT" => HttpMethod.Put,
+                "DELETE" => HttpMethod.Delete,
                 _ => throw new InvalidOperationException($"Method '{method}' is not supported.")
             };
 
+        private static (string, Dictionary<string, string>) ParseUrl(string url)
+        {
+            var urlParts = url.Split('?');
+
+            var path = urlParts[0];
+            var query = urlParts.Length > 1
+                ? ParseQuery(urlParts[1])
+                : new Dictionary<string, string>();
+
+            return (path, query);
+        }
+
+        private static Dictionary<string, string> ParseQuery(string queryString)
+            => queryString
+                 .Split('&')
+                 .Select(part => part.Split('='))
+                 .Where(part => part.Length == 2)
+                 .ToDictionary(part => part[0], part => part[1]);
 
         private static HttpHeaderCollection ParseHttpHeader(IEnumerable<string> headerLines)
         {
@@ -70,13 +93,10 @@ namespace MyWebServer.MyHttpServer.Http
                     throw new InvalidOperationException("Request is not valid.");
                 }
 
-                var header = new HttpHeader
-                {
-                    Name = headerParts[0],
-                    Value = headerParts[1].Trim()
-                };
+                var headerName = headerParts[0];
+                var headerValue = headerParts[1].Trim();
 
-                headerCollection.Add(header);
+                headerCollection.Add(headerName, headerValue);
             }
 
             return headerCollection;
