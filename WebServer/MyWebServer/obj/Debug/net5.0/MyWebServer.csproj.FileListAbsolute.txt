@@ -14,10 +14,7 @@ C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\net5.0\ref\MyW
 C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\net5.0\MyWebServer.pdb
 C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\net5.0\MyWebServer.genruntimeconfig.cache
 C:\Users\Zlatomir123\source\repos\WebServer\MyWebServer\obj\Debug\net5.0\MyWebServer.csproj.AssemblyReference.cache
-E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\bin\Debug\net5.0\MyWebServer.exe
 E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\bin\Debug\net5.0\MyWebServer.deps.json
-E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\bin\Debug\net5.0\MyWebServer.runtimeconfig.json
-E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\bin\Debug\net5.0\MyWebServer.runtimeconfig.dev.json
 E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\bin\Debug\net5.0\MyWebServer.dll
 E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\bin\Debug\net5.0\ref\MyWebServer.dll
 E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\bin\Debug\net5.0\MyWebServer.pdb
@@ -29,4 +26,3 @@ E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\obj\Debug\net5.0\MyWebServer.cspro
 E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\obj\Debug\net5.0\MyWebServer.dll
 E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\obj\Debug\net5.0\ref\MyWebServer.dll
 E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\obj\Debug\net5.0\MyWebServer.pdb
-E:\GitHub\Cs_Web_Basics\WebServer\MyWebServer\obj\Debug\net5.0\MyWebServer.genruntimeconfig.cache
