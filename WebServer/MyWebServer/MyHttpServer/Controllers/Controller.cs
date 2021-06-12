@@ -2,6 +2,7 @@
 {
     using MyWebServer.MyHttpServer.Http;
     using MyWebServer.MyHttpServer.Responses;
+    using System.Runtime.CompilerServices;
 
     public abstract class Controller
     {
@@ -18,5 +19,12 @@
 
         protected HttpResponse Redirect(string text)
             => new RedirectResponse(text);
+
+        protected HttpResponse View([CallerMemberName] string viewName = "")
+            => new ViewResponse(viewName, this.GetControllerName());
+
+        private string GetControllerName()
+                => this.GetType().Name
+                    .Replace(nameof(Controller), string.Empty);
     }
 }

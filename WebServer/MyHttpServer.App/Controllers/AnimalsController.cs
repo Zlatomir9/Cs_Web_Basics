@@ -25,6 +25,10 @@
             return Html(result);
         }
 
-        public HttpResponse Dogs() => Html("<h2>Hello from the dogs!</h2>");
+        public HttpResponse Dogs() => View();
+
+        public HttpResponse Bunnies() => View("Rabbits");
+
+        public HttpResponse Turtles() => View("Animals/Wild/Turtles");
     }
 }

@@ -17,3 +17,6 @@ E:\GitHub\Cs_Web_Basics\WebServer\MyHttpServer.App\obj\Debug\net5.0\MyWebServer.
 E:\GitHub\Cs_Web_Basics\WebServer\MyHttpServer.App\obj\Debug\net5.0\ref\MyWebServer.App.dll
 E:\GitHub\Cs_Web_Basics\WebServer\MyHttpServer.App\obj\Debug\net5.0\MyWebServer.App.pdb
 E:\GitHub\Cs_Web_Basics\WebServer\MyHttpServer.App\obj\Debug\net5.0\MyWebServer.App.genruntimeconfig.cache
+E:\GitHub\Cs_Web_Basics\WebServer\MyHttpServer.App\bin\Debug\net5.0\Views\Animals\Dogs.cshtml
+E:\GitHub\Cs_Web_Basics\WebServer\MyHttpServer.App\bin\Debug\net5.0\Views\Animals\Wild\Turtles.cshtml
+E:\GitHub\Cs_Web_Basics\WebServer\MyHttpServer.App\bin\Debug\net5.0\Views\Animals\Rabbits.cshtml

@@ -10,5 +10,16 @@
   <ItemGroup>
     <ProjectReference Include="..\MyWebServer\MyWebServer.csproj" />
   </ItemGroup>
-
+	
+    <ItemGroup>
+		<Content Include="Views\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+	
+    <ItemGroup>
+      <None Remove="Views\Animals\Wild\Rabbits.cshtml" />
+      <None Remove="Views\Animals\Wild\Turtles.cshtml" />
+    </ItemGroup>
+	
 </Project>
