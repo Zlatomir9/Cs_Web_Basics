@@ -1,9 +1,17 @@
-﻿using MyWebServer.MyHttpServer.Common;
-
-namespace MyWebServer.MyHttpServer.Http
+﻿namespace MyWebServer.MyHttpServer.Http
 {
+    using MyWebServer.MyHttpServer.Common;
+
     public class HttpHeader
     {
+        public const string ContentType = "Content-Type";
+        public const string ContentLength = "Content-Length";
+        public const string Cookie = "Cookie";
+        public const string Date = "Date";
+        public const string Location = "Location";
+        public const string Server = "Server";
+        public const string SetCookie = "Set-Cookie";
+
         public HttpHeader(string name, string value)
         {
             Guard.AgainstNull(name, nameof(name));

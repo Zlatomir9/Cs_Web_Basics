@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MyWebServer.MyHttpServer.Common
+﻿namespace MyWebServer.MyHttpServer.Common
 {
+    using System;
+
     public class Guard
     {
         public static void AgainstNull(object value, string name = null)

@@ -1,30 +1,63 @@
 ﻿namespace MyWebServer.MyHttpServer.Controllers
 {
     using MyWebServer.MyHttpServer.Http;
-    using MyWebServer.MyHttpServer.Responses;
+    using MyWebServer.MyHttpServer.Identity;
+    using MyWebServer.MyHttpServer.Results;
     using System.Runtime.CompilerServices;
 
     public abstract class Controller
     {
-        protected Controller(HttpRequest request)
-            => this.Request = request;
+        public const string UserSessionKey = "AuthenticatedUserId";
 
-        protected HttpRequest Request { get; private init; }
+        private UserIdentity userIdentity;
 
-        protected HttpResponse Text(string text)
-            => new TextResponse(text);
+        protected HttpRequest Request { get; init; }
 
-        protected HttpResponse Html(string text)
-            => new HtmlResponse(text);
+        protected HttpResponse Response { get; private init; } = new HttpResponse(HttpStatusCode.OK);
 
-        protected HttpResponse Redirect(string text)
-            => new RedirectResponse(text);
+        protected UserIdentity User
+        {
+            get
+            {
+                if (this.userIdentity == null)
+                {
+                    this.userIdentity = this.Request.Session.ContainsKey(UserSessionKey)
+                        ? new UserIdentity { Id = this.Request.Session[UserSessionKey] }
+                        : new();
+                }
 
-        protected HttpResponse View([CallerMemberName] string viewName = "")
-            => new ViewResponse(viewName, this.GetControllerName());
+                return this.userIdentity;
+            }
+        }
 
-        private string GetControllerName()
-                => this.GetType().Name
-                    .Replace(nameof(Controller), string.Empty);
+        protected void SignIn(string userId)
+        {
+            this.Request.Session[UserSessionKey] = userId;
+            this.userIdentity = new UserIdentity { Id = userId };
+        }
+
+        protected void SignOut()
+        {
+            this.Request.Session.Remove(UserSessionKey);
+            this.userIdentity = new();
+        }
+
+        protected ActionResult Text(string text)
+            => new TextResult(this.Response, text);
+
+        protected ActionResult Html(string html)
+            => new HtmlResult(this.Response, html);
+
+        protected ActionResult Redirect(string location)
+            => new RedirectResult(this.Response, location);
+
+        protected ActionResult View([CallerMemberName] string viewName = "")
+            => new ViewResult(this.Response, viewName, this.GetType().GetControllerName(), null);
+
+        protected ActionResult View(string viewName, object model)
+            => new ViewResult(this.Response, viewName, this.GetType().GetControllerName(), model);
+
+        protected ActionResult View(object model, [CallerMemberName] string viewName = "")
+            => new ViewResult(this.Response, viewName, this.GetType().GetControllerName(), model);
     }
 }

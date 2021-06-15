@@ -1,18 +1,15 @@
 ﻿namespace MyWebServer.App.Controllers
 {
+    using MyWebServer.App.Models.Animals;
     using MyWebServer.MyHttpServer.Controllers;
     using MyWebServer.MyHttpServer.Http;
 
     public class AnimalsController : Controller
     {
-        public AnimalsController(HttpRequest request) 
-            : base(request)
-        {
-        }
-
         public HttpResponse Cats()
         {
             const string nameKey = "Name";
+            const string ageKey = "Age";
 
             var querry = this.Request.Query;
 
@@ -20,12 +17,25 @@
                 ? querry[nameKey]
                 : "the cats";
 
-            var result = "<h2>Hello from the cats!</h2>";
+            var catAge = querry.ContainsKey(ageKey)
+                ? int.Parse(querry[ageKey])
+                : 0;
 
-            return Html(result);
+            var viewModel = new CatViewModel
+            {
+                Name = catName,
+                Age = catAge
+            };
+
+            return View(viewModel);
         }
 
-        public HttpResponse Dogs() => View();
+        public HttpResponse Dogs() => View(new DogViewModel
+        {
+            Name = "Rex",
+            Age = 3,
+            Breed = "Street Perfect"
+        });
 
         public HttpResponse Bunnies() => View("Rabbits");
 

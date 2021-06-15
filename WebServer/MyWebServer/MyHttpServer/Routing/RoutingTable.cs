@@ -2,24 +2,26 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using MyWebServer.MyHttpServer.Common;
     using MyWebServer.MyHttpServer.Http;
-    using MyWebServer.MyHttpServer.Responses;
 
     public class RoutingTable : IRoutingTable
     {
         private readonly Dictionary<HttpMethod, Dictionary<string, Func<HttpRequest, HttpResponse>>> routes;
 
-        public RoutingTable()
-           => this.routes = new()
-           {
-               [HttpMethod.Get] = new(),
-               [HttpMethod.Delete] = new(),
-               [HttpMethod.Post] = new(),
-               [HttpMethod.Put] = new()
-           };
+        public RoutingTable() => this.routes = new()
+        {
+            [HttpMethod.Get] = new(),
+            [HttpMethod.Post] = new(),
+            [HttpMethod.Put] = new(),
+            [HttpMethod.Delete] = new(),
+        };
 
-        public IRoutingTable Map(HttpMethod method, string path, HttpResponse response)
+        public IRoutingTable Map(
+            HttpMethod method,
+            string path,
+            HttpResponse response)
         {
             Guard.AgainstNull(response, nameof(response));
 
@@ -36,17 +38,21 @@
             return this;
         }
 
-        public IRoutingTable MapGet(string path, HttpResponse response)
+        public IRoutingTable MapGet(
+            string path,
+            HttpResponse response)
             => MapGet(path, request => response);
 
         public IRoutingTable MapGet(string path, Func<HttpRequest, HttpResponse> responseFunction)
             => Map(HttpMethod.Get, path, responseFunction);
 
-        public IRoutingTable MapPost(string path, HttpResponse response)
+        public IRoutingTable MapPost(
+            string path,
+            HttpResponse response)
             => MapPost(path, request => response);
 
         public IRoutingTable MapPost(string path, Func<HttpRequest, HttpResponse> responseFunction)
-            => Map(HttpMethod.Get, path, responseFunction);
+            => Map(HttpMethod.Post, path, responseFunction);
 
         public HttpResponse ExecuteRequest(HttpRequest request)
         {
@@ -56,12 +62,41 @@
             if (!this.routes.ContainsKey(requestMethod)
                 || !this.routes[requestMethod].ContainsKey(requestPath))
             {
-                return new NotFoundResponse();
+                return new HttpResponse(HttpStatusCode.NotFound);
             }
 
             var responseFunction = this.routes[requestMethod][requestPath];
 
             return responseFunction(request);
+        }
+
+        public IRoutingTable MapStaticFiles(string folder = Settings.StaticFilеsRootFolder)
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var staticFilesFolder = Path.Combine(currentDirectory, folder);
+            var staticFiles = Directory.GetFiles(
+                staticFilesFolder,
+                "*.*",
+                SearchOption.AllDirectories);
+
+            foreach (var file in staticFiles)
+            {
+                var relativePath = Path.GetRelativePath(staticFilesFolder, file);
+
+                var urlPath = "/" + relativePath.Replace("\\", "/");
+
+                this.MapGet(urlPath, request =>
+                {
+                    var content = File.ReadAllBytes(file);
+                    var fileExtension = Path.GetExtension(file).Trim('.');
+                    var contentType = HttpContentType.GetByFileExtension(fileExtension);
+
+                    return new HttpResponse(HttpStatusCode.OK)
+                        .SetContent(content, contentType);
+                });
+            }
+
+            return this;
         }
     }
 }
